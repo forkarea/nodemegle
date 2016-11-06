@@ -1,0 +1,10 @@
+$font-color: #ff5463;
+
+h1 {
+  color: $font-color;
+  font-size: 2em;
+}
+
+h1:after {
+  content: "<hr />"
+}
