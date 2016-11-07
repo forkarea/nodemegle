@@ -5,10 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+let UserModel = require('./models/user_model');
 
-const User = require('./models/user_model');
+let indexController =  new (require('./controllers/index_controller'))(UserModel);
+
+var indexRouter = new (require('./routes/index'))(indexController);
 
 var app = express();
 
@@ -23,8 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client','public')));
 
-app.use('/', index(new User('buziaczek@buziaczek.pl', 'buziaczek1337')));
-app.use('/users', users);
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

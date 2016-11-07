@@ -1,11 +1,10 @@
-var express = require('express');
-var router = express.Router();
+let Router = require('express').Router;
 
-/* GET home page. */
-const indexSetup = function(user) {
-  return router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express', user});
-  });
+module.exports = class IndexRouter extends Router {
+  constructor(controller) {
+      super();
+
+      this.get('/', controller.renderIndex.bind(controller));
+      this.get('/json', controller.printJson.bind(controller));
+  }
 };
-
-module.exports = indexSetup;
