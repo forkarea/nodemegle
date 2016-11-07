@@ -8,4 +8,4 @@ window.TEST = (msg = "nima") => {
 
 window.onload = () => {
     document.body.appendChild($header);
-}
+};

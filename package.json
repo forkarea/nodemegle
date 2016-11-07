@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start_server": "nodemon ./bin/www --exec babel-node --presets es2015,stage-1",
+    "start_server": "nodemon ./bin/www",
     "start_webpack": "node ./node_modules/webpack/bin/webpack.js --colors --watch --display-error-details",
     "start_webpackserver": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "start": "npm-run-all --parallel start_server start_webpack"

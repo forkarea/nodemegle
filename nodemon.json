@@ -1,0 +1,4 @@
+{
+  "exec": "babel-node --presets es2015,stage-1",
+  "ignore": "client"
+}
