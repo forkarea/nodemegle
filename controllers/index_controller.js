@@ -13,7 +13,7 @@ class IndexController {
         const UserModel = this.userModel;
         res.render('index', {
             title: 'Express',
-            user: new UserModel("buziaczek@buziaczek.pl", "buziaczek123")
+            user: new UserModel("exampleuser@example.com", "examplepassword")
         });
     }
 
