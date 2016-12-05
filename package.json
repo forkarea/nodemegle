@@ -6,7 +6,7 @@
     "start_server": "nodemon ./bin/www",
     "start_webpack": "node ./node_modules/webpack/bin/webpack.js --colors --watch --display-error-details",
     "start_webpackserver": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "start": "npm-run-all --parallel start_server start_webpack"
+    "start": "npm-run-all --parallel start_webpack start_server"
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.16.0",
@@ -16,8 +16,12 @@
     "ejs": "~2.5.2",
     "express": "~4.14.0",
     "lodash": "^4.16.6",
+    "materialize-css": "^0.97.8",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "vue-loader": "^10.0.2",
+    "vue-server-renderer": "^2.1.4",
+    "vue-template-compiler": "^2.1.4"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -34,6 +38,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
+    "vue-cli": "^2.5.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }

@@ -49,3 +49,5 @@ jspm_packages
 
 # webstorm config
 .idea
+
+client/public/bundle

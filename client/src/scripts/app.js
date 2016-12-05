@@ -1,11 +1,24 @@
-import 'lodash';
-import '../styles/main.scss';
-import {$header} from './test';
+import Vue from 'vue';
+import routes from './routes';
 
-window.TEST = (msg = "nima") => {
-    console.log(`wiadomosc to: ${msg.toUpperCase()}`);
-};
+const app = new Vue({
+    el: '#app',
+    data: {
+        currentRoute: window.location.pathname
+    },
+    computed: {
+        ViewComponent () {
+            const matchingView = routes[this.currentRoute]
+            return matchingView
+                ? require('./pages/' + matchingView + '.vue')
+                : require('./pages/404.vue')
+        }
+    },
+    render (h) {
+        return h(this.ViewComponent)
+    }
+});
 
-window.onload = () => {
-    document.body.appendChild($header);
-};
+window.addEventListener('popstate', () => {
+    app.currentRoute = window.location.pathname;
+});
