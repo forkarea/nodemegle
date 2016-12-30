@@ -13,14 +13,6 @@ var layoutSections = fs.readFileSync('./client/public/index.html', 'utf8').split
 var preAppHTML = layoutSections[0];
 var postAppHTML = layoutSections[1];
 
-/// raczej to do wyjebania
-let UserModel = require('./models/user_model');
-
-let indexController =  new (require('./controllers/index_controller'))(UserModel);
-
-var indexRouter = new (require('./routes/index'))(indexController);
-/// raczej to do wyjebania - end
-
 var app = express();
 
 // zostawiam ten view engine bo express jest popierdolony i bez tego rzuca bledy.
@@ -31,12 +23,12 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'client', 'public','favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'client','public')));
 
-// app.use('/', indexRouter);
-app.get('*', function (request, response) {
+app.use(express.static(path.join(__dirname, 'client', 'public')));
+
+app.get('/', function (request, response) {
     var stream = renderer.renderToStream(require('./client/public/bundle/bundle')());
     response.write(preAppHTML);
     stream.on('data', function (chunk) {
@@ -54,21 +46,22 @@ app.get('*', function (request, response) {
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    console.log(err);
+    next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
