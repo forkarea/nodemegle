@@ -28,6 +28,7 @@ export default {
                 if(!free){
                     this.errors = message;
                 } else {
+                    this.selectName(this.name);
                     // nawigacja mozna to potem gdzies wyjac troche uciazliwe bo potrzebuje thisu
                     this.$root.currentRoute = waitHref;
                     window.history.pushState(
@@ -50,7 +51,6 @@ export default {
         })
     },
     beforeDestroy: function () {
-        this.selectName(this.name);
         console.log('home destroy')
     },
     beforeMount: function () {
