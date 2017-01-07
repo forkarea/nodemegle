@@ -5,7 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var usersStore = require('./models/users-store');
 
 global.Vue = require('vue');
 var renderer = require('vue-server-renderer').createRenderer();
@@ -28,7 +28,17 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'client', 'public')));
-
+app.get('/api/user-exists', (req, res) => {
+    if(req.query && req.query.name){
+        if(usersStore.isUsernameAvailable(req.query.name)){
+            return res.json({free: true});
+        } else {
+            return res.json({free: false, message: "uzytkownik istnieje"});
+        }
+    } else {
+        return res.status(400).send();
+    }
+});
 app.get('*', function (request, response) {
     var stream = renderer.renderToStream(require('./client/public/bundle/bundle')());
     response.write(preAppHTML);

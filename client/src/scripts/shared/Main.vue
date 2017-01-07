@@ -4,6 +4,7 @@
             <div class="nav-wrapper teal accent-3">
                 <h2 class="brand-logo center">Nodemagle</h2>
                 <!--<a href="#" data-activates=     "burger" class="button-collapse"><i class="material-icons">menu</i></a>-->
+                <h4 class="right">{{name}}</h4>
                 <!--<ul id="nav-mobile" class="left hide-on-med-and-down">-->
                     <!--<li>-->
                         <!--<v-link href="/">Home</v-link>-->
@@ -33,10 +34,14 @@
     import 'materialize-css/bin/materialize.css';
     import '../../styles/main.scss';
     import VLink from '../components/VLink.vue';
+    import {mapState} from 'vuex';
 
   export default {
         components: {
           VLink
+        },
+        computed: {
+            ...mapState(['name'])
         },
         mounted: () => {
           $(".button-collapse").sideNav();
