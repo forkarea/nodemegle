@@ -19,10 +19,12 @@
     "materialize-css": "^0.97.8",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
+    "socket.io": "^1.7.2",
     "vue": "^2.1.4",
     "vue-loader": "^10.0.2",
     "vue-server-renderer": "^2.1.4",
-    "vue-template-compiler": "^2.1.4"
+    "vue-template-compiler": "^2.1.4",
+    "vuex": "^2.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

@@ -1,26 +1,26 @@
-<template>
+    <template>
     <div>
         <nav>
             <div class="nav-wrapper teal accent-3">
-                <a href="#" class="brand-logo center">Nodemagle</a>
-                <a href="#" data-activates="burger" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li>
-                        <v-link href="/">Home</v-link>
-                    </li>
-                </ul>
-                <ul class="side-nav" id="burger">
-                    <li>
-                        <v-link href="/">Home</v-link>
-                    </li>
-                </ul>
+                <h2 class="brand-logo center">Nodemagle</h2>
+                <!--<a href="#" data-activates=     "burger" class="button-collapse"><i class="material-icons">menu</i></a>-->
+                <!--<ul id="nav-mobile" class="left hide-on-med-and-down">-->
+                    <!--<li>-->
+                        <!--<v-link href="/">Home</v-link>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<ul class="side-nav" id="burger">-->
+                    <!--<li>-->
+                        <!--<v-link href="/">Home</v-link>-->
+                    <!--</li>-->
+                <!--</ul>-->
             </div>
         </nav>
 
         <div class="container">
-            <h1>NODEMAGLE</h1>
-            <i class="material-icons">cloud</i>
-            <p>Welcome to nodemagle</p>
+            <!--<h1>NODEMAGLE</h1>-->
+            <!--<i class="material-icons">cloud</i>-->
+            <!--<p>Welcome to nodemagle</p>-->
             <slot></slot>
         </div>
     </div>

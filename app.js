@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
 global.Vue = require('vue');
 var renderer = require('vue-server-renderer').createRenderer();
 
@@ -28,7 +29,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'client', 'public')));
 
-app.get('/', function (request, response) {
+app.get('*', function (request, response) {
     var stream = renderer.renderToStream(require('./client/public/bundle/bundle')());
     response.write(preAppHTML);
     stream.on('data', function (chunk) {

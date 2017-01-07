@@ -1,24 +1,8 @@
 <template>
     <main-layout>
         <h1>Home</h1>
+        <v-link href='/wait'>Potwierdź</v-link>
     </main-layout>
 </template>
-
-<script>
-  import MainLayout from '../shared/Main.vue'
-  console.log('rendered home');
-  export default {
-    components: {
-      MainLayout
-    },
-    beforeDestroy: () => {
-      console.log('home destroy')
-    },
-    beforeMount: () => {
-      console.log('rendered home');
-    }
-
-  }
-
-
-</script>
+<style src="./Home/home.css"></style>
+<script src="./Home/home.js"></script>

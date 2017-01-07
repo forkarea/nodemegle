@@ -1,4 +1,5 @@
 export default {
     '/': 'Home',
-    '/asd' : 'Home'
+    '/wait' : 'Wait',
+    '/chat' : 'Chat'
 }
