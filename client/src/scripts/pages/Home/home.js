@@ -1,7 +1,7 @@
 import MainLayout from '../../shared/Main.vue';
 import VLink from '../../components/VLink.vue';
 import {mapMutations} from 'vuex';
-import {SELECT_NAME} from '../../mutations-dictionary';
+import {SELECT_NAME, NAVIGATE_TO} from '../../mutations-dictionary';
 import axios from 'axios';
 
 import routes from '../../routes'
@@ -19,6 +19,10 @@ export default {
         VLink
     },
     methods: {
+        ...mapMutations({
+            selectName: SELECT_NAME,
+            navigateTo: NAVIGATE_TO
+        }),
         updateName: function (e) {
             this.errors = null;
             this.name = e.target.value;
@@ -29,13 +33,7 @@ export default {
                     this.errors = message;
                 } else {
                     this.selectName(this.name);
-                    // nawigacja mozna to potem gdzies wyjac troche uciazliwe bo potrzebuje thisu
-                    this.$root.currentRoute = waitHref;
-                    window.history.pushState(
-                        null,
-                        routes[waitHref],
-                        waitHref
-                    )
+                    this.navigateTo(waitHref);
                 }
             })
                 .catch((res) => {
@@ -45,15 +43,13 @@ export default {
         },
         clearErrors: function(){
             this.errors = null;
-        },
-        ...mapMutations({
-            selectName: SELECT_NAME
-        })
+        }
     },
     beforeDestroy: function () {
         console.log('home destroy')
     },
     beforeMount: function () {
+        console.log('asd ', this.$root.href);
         console.log('rendered home');
     }
 

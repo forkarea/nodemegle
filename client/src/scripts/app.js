@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import routes from './routes';
 import io from 'socket.io-client';
-import Vuex from 'vuex';
+import Vuex, {mapState} from 'vuex';
 import socketManager from './plugins/socketManager';
 import storeFactory from './store';
+import {NAVIGATE_TO} from './mutations-dictionary';
 var socket = io();
 
 Vue.use(Vuex);
@@ -14,13 +15,10 @@ const store = storeFactory(plugins);
 const app = new Vue({
     el: '#app',
     store,
-    data: {
-        currentRoute: window.location.pathname
-    },
     computed: {
+        ...mapState(['currentRoute']),
         ViewComponent () {
             const matchingView = routes[this.currentRoute];
-            console.log(matchingView);
             return matchingView
                 ? require('./pages/' + matchingView + '.vue')
                 : require('./pages/404.vue')
@@ -32,5 +30,5 @@ const app = new Vue({
 });
 
 window.addEventListener('popstate', () => {
-    app.currentRoute = window.location.pathname;
+    store.commit(NAVIGATE_TO, window.location.pathname);
 });

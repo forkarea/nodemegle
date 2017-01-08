@@ -18,6 +18,10 @@ class UsersStore {
     removeUser(user) {
         this[ACTIVE_USERS_LIST].splice(this[ACTIVE_USERS_LIST].indexOf(user), 1);
     }
+    
+    printActiveUsers(){
+        console.log(this[ACTIVE_USERS_LIST].map(x => x.userName));
+    }
 
 }
 

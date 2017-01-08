@@ -14,11 +14,21 @@ module.exports = function initSockets(http) {
                 usersStore.removeUser(user);
                 user = null;
             }
+            usersStore.printActiveUsers();
         });
 
         socket.on(socketMessageTypes.USER_LOGIN, function(name){
             user = new User(name, socket);
             usersStore.addUser(user);
+            usersStore.printActiveUsers();
+        });
+
+        socket.on(socketMessageTypes.USER_LOGOUT, function(name){
+            if(user){
+                usersStore.removeUser(user);
+                user = null;
+            }
+            usersStore.printActiveUsers();
         });
     });
 };

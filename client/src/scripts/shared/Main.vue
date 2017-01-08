@@ -1,27 +1,16 @@
     <template>
     <div>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a @click="logOut">Wyloguj</a></li>
+        </ul>
         <nav>
             <div class="nav-wrapper teal accent-3">
                 <h2 class="brand-logo center">Nodemagle</h2>
-                <!--<a href="#" data-activates=     "burger" class="button-collapse"><i class="material-icons">menu</i></a>-->
-                <h4 class="right">{{name}}</h4>
-                <!--<ul id="nav-mobile" class="left hide-on-med-and-down">-->
-                    <!--<li>-->
-                        <!--<v-link href="/">Home</v-link>-->
-                    <!--</li>-->
-                <!--</ul>-->
-                <!--<ul class="side-nav" id="burger">-->
-                    <!--<li>-->
-                        <!--<v-link href="/">Home</v-link>-->
-                    <!--</li>-->
-                <!--</ul>-->
+                <a v-show="username" class="dropdown-button right" data-activates="dropdown1"><h4>{{username}}</h4></a>
             </div>
         </nav>
 
         <div class="container">
-            <!--<h1>NODEMAGLE</h1>-->
-            <!--<i class="material-icons">cloud</i>-->
-            <!--<p>Welcome to nodemagle</p>-->
             <slot></slot>
         </div>
     </div>
@@ -34,17 +23,31 @@
     import 'materialize-css/bin/materialize.css';
     import '../../styles/main.scss';
     import VLink from '../components/VLink.vue';
-    import {mapState} from 'vuex';
+    import {mapState, mapMutations} from 'vuex';
+    import {NAVIGATE_TO, LOG_OUT} from '../mutations-dictionary'
 
   export default {
         components: {
           VLink
         },
         computed: {
-            ...mapState(['name'])
+            ...mapState(['username'])
         },
         mounted: () => {
-          $(".button-collapse").sideNav();
+            $(".dropdown-button").dropdown();
+        },
+        methods: {
+            ...mapMutations({
+                navigateTo: NAVIGATE_TO,
+                logOut: LOG_OUT
+            })
+        },
+        watch:{
+            username: function(username){
+                if(!username){
+                    this.navigateTo('/');
+                }
+            }
         }
     }
 
@@ -60,7 +63,11 @@
     background: #f9fbe1;
   }
 
-
+  .dropdown-button, ul.dropdown-content li {
+      cursor: pointer;
+      cursor: hand;
+      cursor: -webkit-hand;
+    }
 
 
 </style>

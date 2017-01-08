@@ -6,6 +6,8 @@
 
 <script>
   import routes from '../routes'
+  import {NAVIGATE_TO} from '../mutations-dictionary';
+  import {mapMutations} from 'vuex'
   export default {
     props: {
       href: String,
@@ -17,14 +19,12 @@
       }
     },
     methods: {
+      ...mapMutations({
+        navigateTo: NAVIGATE_TO
+      }),
       go (event) {
-        event.preventDefault()
-        this.$root.currentRoute = this.href
-        window.history.pushState(
-          null,
-          routes[this.href],
-          this.href
-        )
+        event.preventDefault();
+        this.navigateTo(this.href);
       }
     }
   }

@@ -9,10 +9,15 @@ export default {
         VLink
     },
     computed: {
-        ...mapState(['count'])
+        ...mapState(['count', 'partner'])
     },
     methods: {
         ...mapMutations(['increment'])
+    },
+    watch: {
+        'partner.connected': function(){
+            console.log(`partner changed!! new wal: ${this.partner.connected}`)
+        }
     },
     beforeDestroy: () => {
         console.log('chat destroy')
