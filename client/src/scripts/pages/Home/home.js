@@ -4,8 +4,7 @@ import {mapMutations} from 'vuex';
 import {SELECT_NAME, NAVIGATE_TO} from '../../mutations-dictionary';
 import axios from 'axios';
 
-import routes from '../../routes'
-const waitHref = '/wait';
+const chatHref = '/chat';
 
 export default {
     name: 'app-home',
@@ -33,7 +32,7 @@ export default {
                     this.errors = message;
                 } else {
                     this.selectName(this.name);
-                    this.navigateTo(waitHref);
+                    this.navigateTo(chatHref);
                 }
             })
                 .catch((res) => {

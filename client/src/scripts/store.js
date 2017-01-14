@@ -1,9 +1,16 @@
 import {Store} from 'vuex';
 import routes from './routes'
-import {SELECT_NAME, UPDATE_PARTNER, NAVIGATE_TO, LOG_OUT} from './mutations-dictionary';
+import {
+    SELECT_NAME,
+    UPDATE_PARTNER,
+    NAVIGATE_TO,
+    LOG_OUT,
+    SIGNAL_FOR_NEW_PARTNER,
+    SEND_MESSAGE
+} from './mutations-dictionary';
 
-export default function(plugins) {
-   return new Store({
+export default function (plugins) {
+    return new Store({
         state: {
             count: 1,
             username: '',
@@ -22,6 +29,15 @@ export default function(plugins) {
             },
             [UPDATE_PARTNER](state, partner){
                 state.partner = partner;
+            },
+            [SIGNAL_FOR_NEW_PARTNER](state){
+                state.partner = {
+                    connected: false,
+                    name: ""
+                }
+            },
+            [SEND_MESSAGE](state){
+
             },
             [NAVIGATE_TO](state, route){
                 state.currentRoute = route;

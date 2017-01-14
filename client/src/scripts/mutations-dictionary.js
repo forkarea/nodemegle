@@ -2,3 +2,5 @@ export const SELECT_NAME = 'SELECT_NAME';
 export const UPDATE_PARTNER = 'UPDATE_PARTNER';
 export const NAVIGATE_TO = 'NAVIGATE_TO';
 export const LOG_OUT = 'LOG_OUT';
+export const SIGNAL_FOR_NEW_PARTNER = 'SIGNAL_FOR_NEW_PARTNER';
+export const SEND_MESSAGE = 'SEND_MESSAGE';

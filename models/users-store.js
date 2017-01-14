@@ -23,6 +23,10 @@ class UsersStore {
         console.log(this[ACTIVE_USERS_LIST].map(x => x.userName));
     }
 
+    getSearchingUsers(id){
+        return this[ACTIVE_USERS_LIST].filter(x => x.isSearching && x.userId != id)
+    }
+
 }
 
 const usersStore = new UsersStore();
