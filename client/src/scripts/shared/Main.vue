@@ -1,7 +1,8 @@
-    <template>
+<template>
     <div>
         <ul id="dropdown1" class="dropdown-content">
             <li><a @click="logOut">Wyloguj</a></li>
+            <li><a @click="changeName">Zmień imię</a></li>
         </ul>
         <nav>
             <div class="nav-wrapper teal accent-3">
@@ -40,7 +41,10 @@
             ...mapMutations({
                 navigateTo: NAVIGATE_TO,
                 logOut: LOG_OUT
-            })
+            }),
+            changeName: function() {
+                this.navigateTo('/');
+            }
         },
         watch:{
             username: function(username){
@@ -53,6 +57,7 @@
 
 
 
+
 </script>
 
 <style scoped>
@@ -60,7 +65,6 @@
     max-width: 1000px;
     margin: 5px auto 0 auto;
     padding: 15px 30px;
-    background: #f9fbe1;
   }
 
   .dropdown-button, ul.dropdown-content li {
@@ -68,6 +72,7 @@
       cursor: hand;
       cursor: -webkit-hand;
     }
+
 
 
 </style>

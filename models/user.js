@@ -38,7 +38,7 @@ module.exports = class User {
     }
 
     endSearching(user) {
-        if(this[IS_SEARCHING] && this[FOUND_CALLBACK]) {
+        if (this[IS_SEARCHING] && this[FOUND_CALLBACK]) {
             this[IS_SEARCHING] = false;
             this[FOUND_CALLBACK](user);
             this[FOUND_CALLBACK] = null;
@@ -47,5 +47,9 @@ module.exports = class User {
 
     clearPartner() {
         this.partner = null;
+    }
+
+    updateName(name) {
+        this[USER_NAME] = name;
     }
 };

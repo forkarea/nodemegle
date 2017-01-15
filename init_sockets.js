@@ -26,16 +26,24 @@ module.exports = function initSockets(http) {
             signalPartner(user);
         });
         socket.on(socketMessageTypes.ASK_FOR_NEW_PARTNER, () => {
-            console.log('ask', user.userName, user.partner);
             signalPartner(user);
             pairingEngine.findPartner(user)
                 .then(function (result) {
-                    user.partner = result;
-                    socket.emit(socketMessageTypes.CONNECT_NEW_PARTNER, user.partner.userName);
+                    if(result){
+                        user.partner = result;
+                        socket.emit(socketMessageTypes.CONNECT_NEW_PARTNER, user.partner.userName);
+                    }
                 });
         });
         socket.on(socketMessageTypes.MESSAGE, msg => {
             user.partner && user.partner.socket.emit(socketMessageTypes.MESSAGE, msg);
+        });
+        socket.on(socketMessageTypes.STOP_SEARCHING, () => {
+            signalPartner(user);
+            user.endSearching(null);
+        });
+        socket.on(socketMessageTypes.UPDATE_NAME, name => {
+            user.updateName(name);
         })
     });
 };

@@ -6,13 +6,14 @@ import {
     NAVIGATE_TO,
     LOG_OUT,
     SIGNAL_FOR_NEW_PARTNER,
-    SEND_MESSAGE
+    UPDATE_NAME,
+    SEND_MESSAGE,
+    STOP_SEARCHING
 } from './mutations-dictionary';
 
 export default function (plugins) {
     return new Store({
         state: {
-            count: 1,
             username: '',
             partner: {
                 connected: false,
@@ -21,16 +22,22 @@ export default function (plugins) {
             currentRoute: window.location.pathname
         },
         mutations: {
-            increment (state) {
-                state.count++;
-            },
             [SELECT_NAME](state, name){
+                state.username = name;
+            },
+            [UPDATE_NAME](state, name){
                 state.username = name;
             },
             [UPDATE_PARTNER](state, partner){
                 state.partner = partner;
             },
             [SIGNAL_FOR_NEW_PARTNER](state){
+                state.partner = {
+                    connected: false,
+                    name: ""
+                }
+            },
+            [STOP_SEARCHING](state){
                 state.partner = {
                     connected: false,
                     name: ""
@@ -49,7 +56,7 @@ export default function (plugins) {
                 )
             },
             [LOG_OUT](state){
-                state.username = null;
+                state.username = '';
             }
         },
         plugins

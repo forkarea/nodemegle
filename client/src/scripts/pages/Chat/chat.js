@@ -1,6 +1,7 @@
 import MainLayout from '../../shared/Main.vue';
+import VLink from '../../components/VLink.vue';
 import {mapMutations, mapState} from 'vuex'
-import {SIGNAL_FOR_NEW_PARTNER, SEND_MESSAGE} from '../../mutations-dictionary';
+import {SIGNAL_FOR_NEW_PARTNER, SEND_MESSAGE, STOP_SEARCHING} from '../../mutations-dictionary';
 
 export default {
     name: 'chat-view',
@@ -11,39 +12,29 @@ export default {
     },
     components: {
         MainLayout,
+        VLink
     },
     computed: {
-        ...mapState(['count', 'partner'])
+        ...mapState(['partner'])
     },
     methods: {
         ...mapMutations({
-            increment: 'increment',
-            getNext: SIGNAL_FOR_NEW_PARTNER,
-            submitMessage: SEND_MESSAGE
+            submitMessage: SEND_MESSAGE,
+            stopSearching: STOP_SEARCHING
         }),
         sendMessage: function () {
             this.submitMessage(this.message);
             this.message = '';
-        },
-        nextPartner: function () {
-            this.getNext();
         }
     },
     watch: {
         'partner.connected': function () {
-            console.log(`partner changed!! new wal: ${this.partner.connected}`)
         }
     },
     beforeDestroy: () => {
-        console.log('chat destroy')
-    },
-    mounted: function () {
-        this.getNext();
+        console.log('chat destroy');
     },
     beforeMount: function () {
-        console.log(this)
-        this.increment();
         console.log('chat search');
     }
-
 }

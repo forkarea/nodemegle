@@ -4,11 +4,11 @@
         <form @submit.prevent="submitForm">
             <div class="row">
                 <div class="input-field col s9">
-                    <input @focus="clearErrors" :class="{invalid: errors}" class="validate" type="text" id="user-name" @input="updateName"/>
-                    <label :data-error="errors" for="user-name">Wprowadź imię którego chcesz żywać</label>
+                    <input @focus="clearErrors" :value="name" :class="{invalid: errors}" class="validate" type="text" id="user-name" @input="updateName"/>
+                    <label :data-error="errors" :class="{active: name}" for="user-name">Wprowadź imię którego chcesz żywać</label>
                 </div>
                 <div class="col s3">
-                    <button class="btn btn-large" type="submit" href='/wait'>Potwierdź</button>
+                    <button class="btn btn-large" type="submit">Potwierdź</button>
                 </div>
             </div>
         </form>

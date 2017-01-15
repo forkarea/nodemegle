@@ -1,6 +1,7 @@
 import MainLayout from '../../shared/Main.vue';
 import VLink from '../../components/VLink.vue';
-import { mapMutations, mapState } from 'vuex';
+import {mapMutations, mapState} from 'vuex';
+import {NAVIGATE_TO, SIGNAL_FOR_NEW_PARTNER} from '../../mutations-dictionary';
 
 export default {
     name: 'search-view',
@@ -9,16 +10,28 @@ export default {
         VLink
     },
     computed: {
-        ...mapState(['count'])
+        ...mapState(['partner'])
     },
     methods: {
-        ...mapMutations(['increment'])
+        ...mapMutations({
+            navigateTo: NAVIGATE_TO,
+            getNext: SIGNAL_FOR_NEW_PARTNER,
+        })
+    },
+    watch: {
+        'partner.connected': function () {
+            if (this.partner && this.partner.connected) {
+                this.navigateTo('/chat');
+            }
+        }
+    },
+    mounted: function () {
+        this.getNext();
     },
     beforeDestroy: () => {
         console.log('search destroy')
     },
     beforeMount: function () {
-        this.increment();
         console.log('rendered search');
     }
 

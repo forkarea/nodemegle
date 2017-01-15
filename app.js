@@ -29,6 +29,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'client', 'public')));
 app.get('/api/user-exists', (req, res) => {
+    console.log('imieee',req.query.name);
     if(req.query && req.query.name){
         if(usersStore.isUsernameAvailable(req.query.name)){
             return res.json({free: true});
@@ -36,6 +37,9 @@ app.get('/api/user-exists', (req, res) => {
             return res.json({free: false, message: "uzytkownik istnieje"});
         }
     } else {
+        if(req.query && !req.query.name){
+            return res.json({free: false, message: "proszę wprowadź imię"});
+        }
         return res.status(400).send();
     }
 });

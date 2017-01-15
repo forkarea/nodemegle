@@ -3,15 +3,14 @@ import {
     LOG_OUT,
     SIGNAL_FOR_NEW_PARTNER,
     UPDATE_PARTNER,
-    SEND_MESSAGE
+    SEND_MESSAGE,
+    UPDATE_NAME,
+    STOP_SEARCHING
 } from '../mutations-dictionary';
 const socketMessageTypes = require('../../../../shared/socket-message-types-dictionary');
 
 export default function socketManager(socket) {
     return store => {
-        socket.on('data', data => {
-            store.commit('receiveData', data)
-        });
         store.subscribe(mutation => {
             console.log(mutation);
             switch (mutation.type) {
@@ -30,6 +29,12 @@ export default function socketManager(socket) {
                 }
                 case SEND_MESSAGE: {
                     socket.emit(socketMessageTypes.MESSAGE, mutation.payload);
+                }
+                case UPDATE_NAME: {
+                    socket.emit(socketMessageTypes.UPDATE_NAME, mutation.payload);
+                }
+                case STOP_SEARCHING: {
+                    socket.emit(socketMessageTypes.STOP_SEARCHING);
                 }
             }
 
