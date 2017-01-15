@@ -3,11 +3,12 @@
         <!--<p :class="{connected: partner.connected, disconnected: !partner.connected}">{{ partner.name }}</p>-->
         <div class="chat-content">
             <div class="row">
-                <v-link class="btn btn-next right" href='/wait'>Nastepny rozmówca</v-link>
+                <h5 class="col s12 m6 l8"> asd{{partner.name}}</h5>
+                <v-link class="btn btn-next col s12 m6 l4" href='/wait'>Nastepny rozmówca</v-link>
             </div>
-            <messages-list></messages-list>
+            <messages-list :messages="messagesList"></messages-list>
             <form @submit.prevent="sendMessage">
-                <input v-model:value="message" placeholder="Type your message here...">
+                <input :disabled="!partner.connected" v-model:value="message" placeholder="Wpisz wiadomość...">
             </form>
         </div>
     </main-layout>

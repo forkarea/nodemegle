@@ -8,8 +8,12 @@ import {
     SIGNAL_FOR_NEW_PARTNER,
     UPDATE_NAME,
     SEND_MESSAGE,
-    STOP_SEARCHING
+    STOP_SEARCHING,
+    RECEIVE_MESSAGE,
+    SYSTEM_MESSAGE
 } from './mutations-dictionary';
+import {Message} from './models/Message';
+import {OWN, OUTER, SYSTEM} from './models/MessageTypes';
 
 export default function (plugins) {
     return new Store({
@@ -19,6 +23,7 @@ export default function (plugins) {
                 connected: false,
                 name: ""
             },
+            messagesList: [],
             currentRoute: window.location.pathname
         },
         mutations: {
@@ -35,7 +40,8 @@ export default function (plugins) {
                 state.partner = {
                     connected: false,
                     name: ""
-                }
+                };
+                state.messagesList = [];
             },
             [STOP_SEARCHING](state){
                 state.partner = {
@@ -43,8 +49,14 @@ export default function (plugins) {
                     name: ""
                 }
             },
-            [SEND_MESSAGE](state){
-
+            [SEND_MESSAGE](state, message){
+                state.messagesList.unshift(new Message(OWN, state.username, message, new Date));
+            },
+            [RECEIVE_MESSAGE](state, msg){
+                state.messagesList.unshift(new Message(OUTER, state.partner.name || '', msg, new Date));
+            },
+            [SYSTEM_MESSAGE](state, msg){
+                state.messagesList.unshift(new Message(SYSTEM, '', msg, new Date));
             },
             [NAVIGATE_TO](state, route){
                 state.currentRoute = route;

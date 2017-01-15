@@ -4,7 +4,7 @@ let pairingEngine = require('./actions/pairingEngine');
 var usersStore = require('./models/users-store');
 
 module.exports = function initSockets(http) {
-
+    console.log('sockets initialized');
     var io = require('socket.io')(http);
 
     io.on('connection', function (socket) {
@@ -36,6 +36,7 @@ module.exports = function initSockets(http) {
                 });
         });
         socket.on(socketMessageTypes.MESSAGE, msg => {
+            console.log('sending message', msg);
             user.partner && user.partner.socket.emit(socketMessageTypes.MESSAGE, msg);
         });
         socket.on(socketMessageTypes.STOP_SEARCHING, () => {

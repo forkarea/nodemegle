@@ -7,6 +7,8 @@ import storeFactory from './store';
 import {NAVIGATE_TO} from './mutations-dictionary';
 var socket = io();
 
+console.log('sockets initialized - app');
+
 Vue.use(Vuex);
 
 const plugins = [socketManager(socket)];

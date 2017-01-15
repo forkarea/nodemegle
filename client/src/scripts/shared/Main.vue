@@ -6,7 +6,7 @@
         </ul>
         <nav>
             <div class="nav-wrapper teal accent-3">
-                <h2 class="brand-logo center">Nodemagle</h2>
+                <h2 class="brand-logo center hide-on-med-and-down">Nodemagle</h2>
                 <a v-show="username" class="dropdown-button right" data-activates="dropdown1"><h4>{{username}}</h4></a>
             </div>
         </nav>
@@ -63,15 +63,15 @@
         height: 100%;
     }
 
-    /*nav {*/
-        /*max-height: 8%;*/
-    /*}*/
+    nav {
+        max-height: 7%;
+    }
 
     .container {
         max-width: 1000px;
         margin: 5px auto 0 auto;
         padding: 15px 30px;
-        height: 92%;
+        height: 90%;
         overflow: hidden;
     }
 
