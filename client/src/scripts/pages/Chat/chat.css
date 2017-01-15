@@ -5,3 +5,24 @@
 .disconnected {
     color: red;
 }
+
+.btn-next:hover {
+    background-color: #ff5463;
+    color: #FFF;
+}
+.btn-next {
+    background-color: #cecacf;
+    color: #FFF;
+}
+
+.chat-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.chat-content>* {
+    flex-grow: 1;
+}

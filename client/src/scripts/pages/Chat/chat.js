@@ -2,6 +2,7 @@ import MainLayout from '../../shared/Main.vue';
 import VLink from '../../components/VLink.vue';
 import {mapMutations, mapState} from 'vuex'
 import {SIGNAL_FOR_NEW_PARTNER, SEND_MESSAGE, STOP_SEARCHING} from '../../mutations-dictionary';
+import MessagesList from '../../components/MessagesList.vue';
 
 export default {
     name: 'chat-view',
@@ -12,7 +13,8 @@ export default {
     },
     components: {
         MainLayout,
-        VLink
+        VLink,
+        MessagesList
     },
     computed: {
         ...mapState(['partner'])
