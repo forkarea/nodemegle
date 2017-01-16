@@ -48,6 +48,13 @@
         background-color: #ff6771;
     }
 
+    @media (max-width: 600px) {
+        li {
+            max-width: 90%;
+            width: 90%;
+        }
+    }
+
 </style>
 <script type="text/babel">
     import dateFilter from '../filters/date-filter';

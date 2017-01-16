@@ -61,18 +61,22 @@
 <style scoped lang="css" rel="stylesheet/css">
     .root-div {
         height: 100%;
-    }
-
-    nav {
-        max-height: 7%;
+        box-sizing: border-box;
     }
 
     .container {
         max-width: 1000px;
         margin: 5px auto 0 auto;
-        padding: 15px 30px;
+        padding: 15px 10px;
         height: 90%;
         overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 5px 0px;
+        }
     }
 
     .dropdown-button, ul.dropdown-content li {

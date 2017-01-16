@@ -43,7 +43,12 @@ app.get('/api/user-exists', (req, res) => {
         return res.status(400).send();
     }
 });
-app.get('*', function (request, response) {
+
+app.get(/\/.+/, function(req, res){
+    return res.redirect('/');
+});
+
+app.get('/', function (request, response) {
     var stream = renderer.renderToStream(require('./client/public/bundle/bundle')());
     response.write(preAppHTML);
     stream.on('data', function (chunk) {
@@ -53,7 +58,7 @@ app.get('*', function (request, response) {
         response.end(postAppHTML);
     });
     stream.on('error', function (error) {
-        console.error(error);
+        console.error('stream error ',error);
         return response
             .status(500)
             .send('Server Error')
