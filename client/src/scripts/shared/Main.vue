@@ -79,6 +79,10 @@
         }
     }
 
+    .dropdown-button>h4 {
+        margin-right: 10px;
+    }
+
     .dropdown-button, ul.dropdown-content li {
         cursor: pointer;
         cursor: hand;

@@ -1,6 +1,6 @@
 <template>
     <main-layout>
-        <div class="flex-container">
+        <div class="flex-container" key="wait-screen">
             <h2>Szukam odpowiedniego rozmówcy</h2>
             <div class="loader"></div>
         </div>

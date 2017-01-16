@@ -12,33 +12,34 @@
         padding: 5px 15px;
         max-width: 70%;
         border-radius: 8px;
+        overflow-x: hidden;
     }
 
     li p {
         margin: 0;
         padding: 0;
-        color: #FFF;
+        color: #373737;
     }
 
     li div {
-        color: #f6e571;
+        color: #f6c15d;
         margin: 0;
         padding: 0;
     }
 
     li.own {
         align-self: flex-end;
-        background-color: #1de9b6;
+        background-color: #fcde7c;
         text-align: right;
     }
 
     li.own div {
-        color: #E94E1D;
+        color: #e9954d;
     }
 
     li.outer {
         align-self: flex-start;
-        background-color: #9d5ae9;
+        background-color: #f9fcd0;
     }
 
     li.system {
@@ -46,6 +47,10 @@
         width: 95%;
         text-align: center;
         background-color: #ff6771;
+    }
+
+    li.system p {
+        color: #EEE;
     }
 
     @media (max-width: 600px) {

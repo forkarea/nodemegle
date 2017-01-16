@@ -1,7 +1,7 @@
 <template xmlns:v-model="http://www.w3.org/1999/xhtml">
     <main-layout>
         <!--<p :class="{connected: partner.connected, disconnected: !partner.connected}">{{ partner.name }}</p>-->
-        <div class="chat-content">
+        <div class="chat-content" key="chat-screen">
             <div class="row">
                 <h5 class="col s12 m6 l8"> asd{{partner.name}}</h5>
                 <v-link class="btn btn-next col s12 m6 l4" href='/wait'>Nastepny rozmówca</v-link>

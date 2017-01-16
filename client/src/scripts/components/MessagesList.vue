@@ -1,7 +1,8 @@
 <template xmlns:v="http://www.w3.org/1999/xhtml" xmlns:v-if="http://www.w3.org/1999/xhtml">
-    <ul class="message-list">
-        <message-item :type="msg.type" :user="msg.user" :content="msg.content" :time="msg.time" v-for="msg in messages"></message-item>
-    </ul>
+        <ul class="message-list" key="msgs-list">
+            <message-item :key="msg.id" :type="msg.type" :user="msg.user" :content="msg.content" :time="msg.time"
+                          v-for="msg in messages"></message-item>
+        </ul>
 </template>
 <style scoped lang="css" rel="stylesheet/css">
     .message-list {
@@ -10,6 +11,7 @@
         flex: 6 1 auto;
         flex-direction: column-reverse;
         overflow-y: auto;
+        overflow-x: hidden;
         height: 100%;
         min-height: 0px;
     }
@@ -25,8 +27,7 @@
             }
         },
         data(){
-            return {
-            }
+            return {}
         },
         components: {
             MessageItem
