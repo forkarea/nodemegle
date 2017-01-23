@@ -5,9 +5,9 @@ const randomJs = require('random-js')();
 function findPartner(user) {
     return new Promise(function (resolve) {
        return setTimeout(function () {
-            let availableUsers = usersStore.getSearchingUsers(user.userId);
+            let availableUsers = user && usersStore.getSearchingUsers(user.userId);
             if (!availableUsers || !availableUsers.length) {
-                user.markAsSearching(resolve);
+                user && user.markAsSearching(resolve);
                 return;
             }
             let random = randomJs.integer(0, availableUsers.length - 1);
@@ -15,7 +15,7 @@ function findPartner(user) {
             let partner = availableUsers[random];
             partner.endSearching(user);
             return resolve(partner);
-        }, 1500);
+        });
     })
 }
 

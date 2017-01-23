@@ -36,7 +36,6 @@ module.exports = function initSockets(http) {
                 });
         });
         socket.on(socketMessageTypes.MESSAGE, msg => {
-            console.log('sending message', msg);
             user.partner && user.partner.socket.emit(socketMessageTypes.MESSAGE, msg);
         });
         socket.on(socketMessageTypes.STOP_SEARCHING, () => {

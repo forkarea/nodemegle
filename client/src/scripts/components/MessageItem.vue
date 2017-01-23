@@ -13,6 +13,7 @@
         max-width: 70%;
         border-radius: 8px;
         overflow-x: hidden;
+        min-height: 62px;
     }
 
     li p {
