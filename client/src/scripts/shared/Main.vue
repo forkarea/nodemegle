@@ -5,8 +5,8 @@
             <li><a @click="changeName">Zmień imię</a></li>
         </ul>
         <nav>
-            <div class="nav-wrapper teal accent-3">
-                <h2 class="brand-logo center hide-on-med-and-down">Nodemagle</h2>
+            <div class="nav-wrapper teal">
+                <h2 class="brand-logo center hide-on-med-and-down">nodemegle</h2>
                 <a v-show="username" class="dropdown-button right" data-activates="dropdown1"><h4>{{username}}</h4></a>
             </div>
         </nav>
@@ -18,9 +18,6 @@
 </template>
 
 <script type="text/babel">
-    // pierwszy i ostatni raz. Jest jeszcze biblioteka Material-design-lite
-    // ma już więcej gwiazdek na gicie.
-    // wcale sie kurwa nie dziwie...
     import 'materialize-css/bin/materialize.css';
     import '../../styles/main.scss';
     import VLink from '../components/VLink.vue';
